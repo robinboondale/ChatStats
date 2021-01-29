@@ -16,8 +16,7 @@ class Message(object):
         self.text = message.find('div', class_="_3-96 _2let").text
         self.words = self.get_word_list()
         self.reacts = self.count_reacts()
-     
-    
+         
     def count_reacts(self):
         reacts = {}
         for react in '❤😆😮😢👍👎😍😠':
@@ -60,22 +59,7 @@ class MessageSet(object):
                 years+=[message.date.year]
         years.reverse()
         return years
-
-
-    # def get_message_dict(self):
-    #     """
-    #     Creates a hierarcical dictionary of messages
-    #     searchable by [year][month]
-    #     """
-    #     results = {}
-    #     for message in self.messages:
-    #         if message.date.year not in results.keys():
-    #             results[message.date.year] = {}
-    #         if message.date.month not in results[message.date.year].keys():
-    #             results[message.date.year][message.date.month] = []
-    #         results[message.date.year][message.date.month] += [message]
-    #     return results
-    
+   
     def messages_by_sender(self, sender):
         """
         Takes a sender's name as a string
@@ -329,10 +313,6 @@ class MessengerChat(MessageSet):
 
 
 
-
-
-
-
 def PlotMessagesPerSender(messageset):
         """
         takes list of message objects
@@ -404,8 +384,6 @@ def plot_messages_per_month(messageset, years= None, style = 'r-'):
     plt.title('Messages sent per month')
     plt.show    
 
-#plot_messages_per_month(group_chat)
-
 
 def plot_word_usage(messageset, word, years = None, style='r-'):
     if years == None:
@@ -444,18 +422,7 @@ def plot_word_usage(messageset, word, years = None, style='r-'):
     ax.xaxis.set_minor_locator(mdates.MonthLocator())
     ax.xaxis.set_major_locator(mdates.YearLocator())    
     plt.plot(monthticks, avgs, style)
-    #plt.plot(monthticks, count, 'r-')
     plt.title("\'"+word+"\'")
     plt.ylabel('Uses per 1000 messages')
     plt.show
 
-#group_chat.most_reacts()
-#group_chat.most_reacts_per_message()
-
-#plot_word_usage(group_chat, 'beans', style = '#FFA500')
-# plot_word_usage(group_chat, 'zoom', years=range(2015, 2018))
-# plot_word_usage(group_chat, 'big')
-# plot_word_usage(group_chat, 'nye')
-# plot_word_usage(group_chat, 'great')
-# plot_word_usage(group_chat, 'brek')
-# plot_word_usage(group_chat, 'keen', years= range(2015,2020), style='b-')
